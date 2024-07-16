@@ -24,6 +24,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "primaryEntityManagerFactory",
         transactionManagerRef = "primaryTransactionManager",
+
         basePackages = {"com.example.multidb.repository.h2"}) //repository package name
 public class H2DatabaseConfiguration {
 
@@ -39,6 +40,7 @@ public class H2DatabaseConfiguration {
     @Primary
     @Bean(name = "primaryDataSource")
     @ConfigurationProperties("spring.datasource.mysql1.configuration")
+
     public DataSource primaryDataSource(@Qualifier("primaryDataSourceProperties") DataSourceProperties primaryDataSourceProperties) {
         return primaryDataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
     }
@@ -61,7 +63,6 @@ public class H2DatabaseConfiguration {
                 .properties(primaryJpaProperties)
                 .build();
     }
-
     //transaction manager
     @Primary
     @Bean(name = "primaryTransactionManager")

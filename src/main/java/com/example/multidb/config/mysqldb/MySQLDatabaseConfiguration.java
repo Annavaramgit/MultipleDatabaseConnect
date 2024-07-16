@@ -33,6 +33,7 @@ public class MySQLDatabaseConfiguration {
         return new DataSourceProperties();
     }
 
+
     // datasource created here
     @Bean(name = "secondaryDataSource")
     @ConfigurationProperties("spring.datasource.mysql.configuration")
